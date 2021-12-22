@@ -34,7 +34,6 @@ test('Failing to retrieve a non-existing entry', async () => {
     try {
         const res = await axios.get(`${url}/sparkpost/${nonExistingEntry}`)
     } catch (e) {
-        console.log(e.response.data)
         expect(e.response.status).toEqual(404)
         expect(e.response.data.error).toEqual(`No entries for ${nonExistingEntry} were found`)
     }
