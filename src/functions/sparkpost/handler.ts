@@ -18,7 +18,7 @@ const sparkpost: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (even
   if (event.httpMethod === "GET") {
     const pathParameters: string | undefined = event?.pathParameters?.name || ""
     const age = data[pathParameters];
-    if (!!age) {
+    if (!!age || age === 0) {
       return formatJSONResponse(200, {
         name: pathParameters,
         age

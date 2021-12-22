@@ -29,6 +29,19 @@ test('Successfuly retrieving an updated entry', async () => {
     expect(res.data.age).toMatch("27")
 });
 
+test('Successfuly creating an entry with age 0', async () => {
+    const res = await axios.post(`${url}/sparkpost`, {name: "x", age: 0})
+    expect(res.status).toEqual(200)
+    expect(res.data.message).toMatch("Operation Successful")
+});
+
+test('Successfuly retrieving an entry with age 0', async () => {
+    const res = await axios.get(`${url}/sparkpost/x`)
+    expect(res.status).toEqual(200)
+    expect(res.data.name).toMatch("x")
+    expect(res.data.age).toEqual(0)
+});
+
 test('Failing to retrieve a non-existing entry', async () => {
     const nonExistingEntry = `Soga1` 
     try {
